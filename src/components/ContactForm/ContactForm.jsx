@@ -7,6 +7,8 @@ import { contactFormSchema } from "../../components/contactFormSchema";
 import { useDispatch, useSelector } from "react-redux";
 import { addContact } from "../../redux/contactsOps";
 
+import { selectContacts } from "../../redux/selectors";
+
 const initialValues = {
   name: "",
   number: "",
@@ -16,7 +18,7 @@ export default function ContactForm() {
   
   const dispatch = useDispatch();
 
-  const contacts = useSelector((state) => state.contactsData.items);
+  const contacts = useSelector(selectContacts);
   const handleSubmit = (values, actions) => {
 
     if (contacts.some(contact => contact.number === values.number)) {
@@ -55,7 +57,7 @@ export default function ContactForm() {
         </label>
         <Field type="tel" 
                 name="number" 
-                placeholder="+XX XX XXX XX XX" 
+                placeholder="XXX-XXX-XXXX" 
                 className={css.formInput} />
         <ErrorMessage
           className={css.errorNumber}

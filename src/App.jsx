@@ -19,7 +19,7 @@ export default function App() {
   useEffect(() => {
     dispatch(fetchContacts());
   }, [dispatch]);
-  
+   
   return (
     <>
       <h1 className={css.title}>Phonebook</h1>

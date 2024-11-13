@@ -1,23 +1,24 @@
 import css from "./ContactList.module.css";
-import { useSelector } from "react-redux";
-
 import Contact from "../Contact/Contact";
+
+import { useSelector } from "react-redux";
+import { selectContacts, selectFilteredContacts } from "../../redux/selectors";
 
 export default function TaskList() {
 
-  const contacts = useSelector((state) => state.contactsData.items);
-  const filteredContacts = useSelector((state) => state.filtersData.name);
+  // const contacts = useSelector(selectContacts);
+  const filteredContacts = useSelector(selectFilteredContacts);
 
-  const visibleContacts = contacts?.filter((contact) =>
-    contact.name.toLowerCase().includes(filteredContacts.toLocaleLowerCase())
-  );
+  // const visibleContacts = contacts.filter((contact) =>
+  //   contact.name.toLowerCase().includes(filteredContacts.toLocaleLowerCase())
+  // );
   
-  if (visibleContacts?.length === 0) {
+  if (filteredContacts.length === 0) {
     return <p className={css.text}>No contacts found</p>;
   }
   return (
     <ul className={css.list}>
-      {visibleContacts?.map((contact) => (
+      {filteredContacts.map((contact) => (
         <li className={css.item} key={contact.id}>
           <Contact data={contact}  />
         </li>
