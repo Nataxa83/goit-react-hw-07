@@ -1,9 +1,11 @@
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import css from "./ContactForm.module.css";
 
-import { addContact } from "../../redux/contactsSlice";
-import { useDispatch, useSelector } from "react-redux";
+// import { addContact } from "../../redux/contactsSlice";
 import { contactFormSchema } from "../../components/contactFormSchema";
+
+import { useDispatch, useSelector } from "react-redux";
+import { addContact } from "../../redux/contactsOps";
 
 const initialValues = {
   name: "",
@@ -22,12 +24,12 @@ export default function ContactForm() {
       return;
     }
     const newContact = {
-      id: Date.now(),
-      name: values.name,
+      id: Date.now(), 
+      name: values.name, 
       number: values.number,      
     }
-    const action = addContact(newContact);
-    dispatch(action);
+    
+    dispatch(addContact(newContact));
     actions.resetForm();
   };
   
@@ -40,13 +42,21 @@ export default function ContactForm() {
         <label>
           <span className={css.label}>Name</span>
         </label>
-        <Field type="text" name="name" placeholder=" Jhon Smith" className={css.formInput} />
-        <ErrorMessage className={css.errorName} name="name" component="span" />
+        <Field type="text" 
+                name="name" 
+                placeholder=" Jhon Smith" 
+                className={css.formInput} />
+        <ErrorMessage className={css.errorName} 
+                        name="name" 
+                        component="span" />
 
         <label>
           <span className={css.label}>Number</span>
         </label>
-        <Field type="tel" name="number" placeholder="+XX XX XXX XX XX" className={css.formInput} />
+        <Field type="tel" 
+                name="number" 
+                placeholder="+XX XX XXX XX XX" 
+                className={css.formInput} />
         <ErrorMessage
           className={css.errorNumber}
           name="number"
