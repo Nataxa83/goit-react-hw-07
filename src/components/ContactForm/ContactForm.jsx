@@ -1,7 +1,6 @@
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import css from "./ContactForm.module.css";
 
-// import { addContact } from "../../redux/contactsSlice";
 import { contactFormSchema } from "../../components/contactFormSchema";
 
 import { useDispatch, useSelector } from "react-redux";
@@ -19,6 +18,7 @@ export default function ContactForm() {
   const dispatch = useDispatch();
 
   const contacts = useSelector(selectContacts);
+  
   const handleSubmit = (values, actions) => {
 
     if (contacts.some(contact => contact.number === values.number)) {
